@@ -25,13 +25,13 @@ class PokemonSeeder extends Seeder
                 ],
                 [
                     'nom'=>'Carapuce',
-                    'type_id'=>3,
+                    'type_id'=>2,
                     'image'=>'eau.png',
                     'niveau'=>'20',
                 ],
                 [
                     'nom'=>'Bulbizarre',
-                    'type_id'=>1,
+                    'type_id'=>3,
                     'image'=>'plante.png',
                     'niveau'=>'56',
                 ],

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Pokemon;
 use App\Models\Type;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 use function PHPSTORM_META\type;
 
@@ -68,9 +69,11 @@ class PokemonController extends Controller
      * @param  \App\Models\Pokemon  $pokemon
      * @return \Illuminate\Http\Response
      */
-    public function edit(Pokemon $pokemon)
+    public function edit($id)
     {
-        //
+        $pokemon=Pokemon::find($id);
+        $types=Type::all();
+        return view('editPokemon',compact('pokemon','types'));
     }
 
     /**
@@ -80,9 +83,17 @@ class PokemonController extends Controller
      * @param  \App\Models\Pokemon  $pokemon
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pokemon $pokemon)
+    public function update(Request $request , $id)
     {
-        //
+        $newPokemon=Pokemon::find($id);
+        $newPokemon->nom = $request->nom;
+        $newPokemon->type_id = $request->type_id;
+        $newPokemon->image = $request->file('image')->hashName();
+        $newPokemon->niveau = $request->niveau;
+        $newPokemon->save();
+        $request->file('image')->storePublicly('images', 'public');
+        Storage::disk('public')->delete('images/' . $newPokemon->photo);
+        return redirect('/');
     }
 
     /**
@@ -91,8 +102,8 @@ class PokemonController extends Controller
      * @param  \App\Models\Pokemon  $pokemon
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pokemon $pokemon)
+    public function destroy($id)
     {
-        //
+        
     }
 }

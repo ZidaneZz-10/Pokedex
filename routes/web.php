@@ -21,3 +21,6 @@ Route::post('/add-type',[TypeController::class,'store']);
 Route::get('/create-pokemon',[PokemonController::class,'create']);
 Route::post('/add-pokemon',[PokemonController::class,'store']);
 Route::get('/pokemon/{id}',[PokemonController::class,'show']);
+Route::get('/pokemon-edit/{id}',[PokemonController::class,'edit']);
+Route::post('/update-pokemon/{id}',[PokemonController::class,'update']);
+
