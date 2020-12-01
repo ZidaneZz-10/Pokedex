@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class TypeSeeder extends Seeder
 {
@@ -13,6 +14,18 @@ class TypeSeeder extends Seeder
      */
     public function run()
     {
-        //
+        DB::table('types')->insert(
+            [
+                [
+                    'nom'=>'Feu',
+                ],
+                [
+                    'nom'=>'Eau',
+                ],
+                [
+                    'nom'=>'Plante',
+                ],
+            ],
+        );
     }
 }

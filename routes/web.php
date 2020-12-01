@@ -18,3 +18,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/',[PokemonController::class,'index']);
 Route::get('/create-type',[TypeController::class,'create']);
 Route::post('/add-type',[TypeController::class,'store']);
+Route::get('/create-pokemon',[PokemonController::class,'create']);
+Route::post('/add-pokemon',[PokemonController::class,'store']);
+Route::get('/pokemon/{id}',[PokemonController::class,'show']);

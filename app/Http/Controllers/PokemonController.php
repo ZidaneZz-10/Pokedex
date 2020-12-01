@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pokemon;
+use App\Models\Type;
 use Illuminate\Http\Request;
+
+use function PHPSTORM_META\type;
 
 class PokemonController extends Controller
 {
@@ -14,7 +17,9 @@ class PokemonController extends Controller
      */
     public function index()
     {
-    return view('welcome');
+        $types = Type::all();
+        $pokemons = Pokemon::all();
+        return view('welcome',compact('types','pokemons'));
     }
     /**
      * Show the form for creating a new resource.
@@ -23,7 +28,8 @@ class PokemonController extends Controller
      */
     public function create()
     {
-        //
+        $type = Type::all();
+        return view('createPokemon', compact('type'));
     }
 
     /**
@@ -34,7 +40,14 @@ class PokemonController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $newPokemon = new Pokemon;
+        $newPokemon->nom = $request->nom;
+        $newPokemon->type_id = $request->type_id;
+        $newPokemon->image = $request->file('image')->hashName();
+        $newPokemon->niveau = $request->niveau;
+        $newPokemon->save();
+        $request->file('image')->storePublicly('images', 'public');
+        return redirect()->back();
     }
 
     /**
@@ -43,9 +56,10 @@ class PokemonController extends Controller
      * @param  \App\Models\Pokemon  $pokemon
      * @return \Illuminate\Http\Response
      */
-    public function show(Pokemon $pokemon)
+    public function show($id)
     {
-        //
+       $pokemon=Pokemon::find($id);
+       return view('show',compact('pokemon'));
     }
 
     /**
