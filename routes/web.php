@@ -24,5 +24,13 @@ Route::get('/pokemon/{id}',[PokemonController::class,'show']);
 Route::get('/pokemon-edit/{id}',[PokemonController::class,'edit']);
 Route::post('/update-pokemon/{id}',[PokemonController::class,'update']);
 Route::post('/pokemon-delete/{id}',[PokemonController::class,'destroy']);
+Route::get('/types',[TypeController::class,'index']);
+Route::get('/type/{id}',[TypeController::class,'show']);
+Route::post('/type-delete/{id}',[TypeController::class,'destroy']);
+Route::post('/update-type/{id}',[TypeController::class,'update']);
+
+
+
+
 
 

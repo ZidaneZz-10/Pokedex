@@ -14,7 +14,8 @@ class TypeController extends Controller
      */
     public function index()
     {
-        //
+        $types=Type::all();
+        return view('Types',compact('types'));
     }
 
     /**
@@ -50,9 +51,10 @@ class TypeController extends Controller
      * @param  \App\Models\Type  $type
      * @return \Illuminate\Http\Response
      */
-    public function show(Type $type)
+    public function show($id)
     {
-        //
+        $type=Type::find($id);
+       return view('showType',compact('type'));
     }
 
     /**
@@ -63,7 +65,7 @@ class TypeController extends Controller
      */
     public function edit(Type $type)
     {
-        //
+        
     }
 
     /**
@@ -73,9 +75,12 @@ class TypeController extends Controller
      * @param  \App\Models\Type  $type
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Type $type)
+    public function update(Request $request , $id)
     {
-        //
+        $newType=Type::find($id);
+        $newType->nom=$request->nom;
+        $newType->save();
+        return redirect()->back();
     }
 
     /**
@@ -84,8 +89,10 @@ class TypeController extends Controller
      * @param  \App\Models\Type  $type
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Type $type)
+    public function destroy($id)
     {
-        //
+        $type=Type::find($id);
+        $type->delete();
+        return redirect()->back();
     }
 }
