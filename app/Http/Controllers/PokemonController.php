@@ -104,6 +104,9 @@ class PokemonController extends Controller
      */
     public function destroy($id)
     {
-        
+        $pokemon=Pokemon::find($id);
+        Storage::disk('public')->delete('images/' . $pokemon->image);
+        $pokemon->delete();
+        return redirect('/');
     }
 }

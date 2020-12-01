@@ -6,7 +6,8 @@
     <p>Type : {{$pokemon->type->nom}}</p>
     <p>Niveau : {{$pokemon->niveau}}</p>
     <button><a href="/pokemon-edit/{{$pokemon->id}}">edit</a></button>
-    <form action="/pokemon-delete/{{$pokemon->id}}">
+    <form action="/pokemon-delete/{{$pokemon->id}}" method="POST">
+        @csrf
         <button type="submit">delete</button>
     </form>
 </div>
