@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\PokemonController;
+use App\Http\Controllers\TypeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +15,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/',[PokemonController::class,'index']);
+Route::get('/create-type',[TypeController::class,'create']);
+Route::post('/add-type',[TypeController::class,'store']);
