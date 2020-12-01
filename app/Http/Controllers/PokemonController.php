@@ -41,6 +41,13 @@ class PokemonController extends Controller
      */
     public function store(Request $request)
     {
+        $validateForm=$request->validate([
+            "nom"=>"string|required",
+            "type_id"=>"required",
+            "image"=>"required",
+            "niveau"=>"integer|required|min:1|max:100",
+        ]);
+
         $newPokemon = new Pokemon;
         $newPokemon->nom = $request->nom;
         $newPokemon->type_id = $request->type_id;
@@ -85,6 +92,13 @@ class PokemonController extends Controller
      */
     public function update(Request $request , $id)
     {
+        $validateForm=$request->validate([
+            "nom"=>"string|required",
+            "type_id"=>"required",
+            "image"=>"required",
+            "niveau"=>"integer|required|min:1|max:100",
+        ]);
+        
         $newPokemon=Pokemon::find($id);
         $newPokemon->nom = $request->nom;
         $newPokemon->type_id = $request->type_id;

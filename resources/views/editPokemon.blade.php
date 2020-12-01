@@ -11,7 +11,7 @@
             <option value="{{$type->id}}">{{$type->nom}}</option>
             @endforeach
         </select>
-    <input type="file" name="image">
+    <input type="file" name="image" value="{{$pokemon->image}}">
     <input type="number" name="niveau" value="{{$pokemon->niveau}}">
 
     <button type="submit">Add</button>

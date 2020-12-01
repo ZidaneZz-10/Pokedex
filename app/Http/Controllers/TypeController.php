@@ -35,6 +35,9 @@ class TypeController extends Controller
      */
     public function store(Request $request)
     {
+        $validateForm=$request->validate([
+            "nom"=>"string|required",
+        ]);
         $newType=new Type;
         $newType->nom=$request->nom;
         $newType->save();
